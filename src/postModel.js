@@ -9,11 +9,28 @@ export const getModel = async (req, res) => {
 		data : getData
 	})
 }
-
+function getDates() {
+	let dates = new Date();
+	var hours = dates.getHours();
+	var minitus = dates.getMinutes();
+	var second = dates.getSeconds();
+	var day = dates.getDate();
+	var month = dates.getMonth();
+	var year = dates.getFullYear();
+	
+	const datesFull = `${hours}:${minitus}:${second} , ${day}-${month}-${year}`;
+	return datesFull;
+}
 export const postModel = async (req, res, next) => {
-	const {presentase, kondisi, date} = req.body;
-	try{
-		const postData = new SchemaSensorTanah({presentase, kondisi, date})
+	const {presentase, kondisi} = req.body;
+	const b = getDates();
+	const newObject = {
+		presentase : presentase,
+		kondisi : kondisi,
+		date : b
+	}
+	
+		const postData = new SchemaSensorTanah(newObject);
 		const condition = await postData.save();
 		if(!condition){
 			res.json({
@@ -27,11 +44,9 @@ export const postModel = async (req, res, next) => {
 			data : {
 				presentase : presentase,
 				kondisi  : kondisi,
-				date : date,
+				date : b,
 			}
 		})
 		next()
-	}catch {
-		res.json("Gga;")
-	}
+	
 }
