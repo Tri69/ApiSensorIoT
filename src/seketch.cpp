@@ -1,4 +1,4 @@
-#include<ESP8266WiFi.h>
+/*#include<ESP8266WiFi.h>
 #include<HTTPClient.h>
 #include<ArduinoJson.h>
 
@@ -16,3 +16,4 @@ void setup() {
 void loop() {
 	m
 }
+*/
