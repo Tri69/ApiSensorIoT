@@ -10,7 +10,7 @@ db.once('open', ()=> {
 
 const SchemaData = mongoose.Schema({
 	presentase : {
-		type : String,
+		type : Number,
 		required : true
 	},
 	kondisi : {
